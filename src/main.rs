@@ -1,5 +1,5 @@
 mod bpe_tokenizer;
-use bpe_tokenizer::BPETokenizerSimple;
+use bpe_tokenizer::RustyBPETokenizer;
 use std::io::{self, Read};
 use std::path::Path;
 
@@ -19,7 +19,7 @@ fn main() {
 
     let training_text = read_file("./the-verdict.txt").unwrap();
 
-    let mut tokenizer = BPETokenizerSimple::new();
+    let mut tokenizer = RustyBPETokenizer::new();
     
     let mut allowed_special = HashSet::new();
     allowed_special.insert("<|endoftext|>".to_string());
@@ -32,7 +32,6 @@ fn main() {
     let token_ids = tokenizer.encode(input_text);
     println!("{:?}", token_ids);
     
-    println!("NOW DECODING \n\n");  
     // Test decoding
     match tokenizer.decode(&token_ids) {
         Ok(decoded) => println!("Decoded: {}", decoded),

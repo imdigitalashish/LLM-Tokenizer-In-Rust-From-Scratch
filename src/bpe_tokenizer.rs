@@ -13,22 +13,22 @@ struct BpeMerge {
     new_id: usize,
 }
 
-pub struct BPETokenizerSimple {
+pub struct RustyBPETokenizer {
     vocab: HashMap<usize, String>,
     inverse_vocab: HashMap<String, usize>,
     bpe_merges: HashMap<(usize, usize), usize>,
 }
 
-impl BPETokenizerSimple {
+impl RustyBPETokenizer {
     pub fn new() -> Self {
-        BPETokenizerSimple {
+        RustyBPETokenizer {
             vocab: HashMap::new(),
             inverse_vocab: HashMap::new(),
             bpe_merges: HashMap::new(),
         }
     }
 
-    // Inside the BPETokenizerSimple implementation, modify the train method:
+    // Inside the RustyBPETokenizer implementation, modify the train method:
 
     pub fn train(&mut self, text: &str, vocab_size: usize, allowed_special: HashSet<String>) {
         let mut processed_text = String::new();
